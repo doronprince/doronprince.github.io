@@ -27,11 +27,10 @@
     .reveal{ opacity:1 !important; transform:none !important; }
     .preloader{ display:none !important; }
     .hero__title .decrypt{ transform:none !important; animation:none !important; }
-    .meter i::after{ width:var(--fallback-lvl,70%) !important; }
-    #projectGrid::after{
-      content:'Project list requires JavaScript — browse them at github.com/doronprince';
-      color:#98a1b5; font-size:.9rem;
-    }
+    /* The project grid and its filters are both JS-driven — hide the dead
+       controls rather than leaving six chips that do nothing when clicked. */
+    #filters{ display:none !important; }
+    .noscript-note{ display:block !important; }
   </style>
 </noscript>
 </head>
@@ -321,6 +320,12 @@
       <button class="chip" data-filter="fullstack">Full-Stack</button>
       <button class="chip" data-filter="creative">Creative</button>
     </div>
+
+    <p class="noscript-note">
+      The project gallery is rendered with JavaScript. With it disabled, browse the
+      repositories directly at
+      <a href="https://github.com/doronprince?tab=repositories" target="_blank" rel="noopener">github.com/doronprince</a>.
+    </p>
 
     <div class="grid" id="projectGrid"><!-- injected by main.js --></div>
 

@@ -650,6 +650,15 @@ main, .nav, .footer{ position:relative; z-index:2; }
 
 .grid-more{ margin-top:2.4rem; display:flex; justify-content:center; }
 
+/* Shown only by the <noscript> stylesheet. */
+.noscript-note{
+  display:none;
+  padding:1.3rem 1.5rem; border-radius:14px;
+  border:1px solid var(--line); background:var(--panel);
+  color:var(--text-dim); font-size:.92rem;
+}
+.noscript-note a{ color:var(--cyan); text-decoration:underline; }
+
 /* ══════════════ SKILLS ══════════════ */
 .skills{
   display:grid; gap:1.15rem;
