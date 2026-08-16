@@ -348,13 +348,15 @@
         var suffix = el.dataset.suffix || '';
         if (reduced) { el.textContent = target + suffix; io.unobserve(el); return; }
         var t0 = null, dur = 1500;
-        (function step(ts) {
-          if (!t0) t0 = ts;
+        // Must be driven by rAF from the first frame — calling step() directly
+        // leaves `ts` undefined and the whole computation collapses to NaN.
+        requestAnimationFrame(function step(ts) {
+          if (t0 === null) t0 = ts;
           var k = Math.min((ts - t0) / dur, 1);
           var eased = 1 - Math.pow(1 - k, 3);
           el.textContent = Math.floor(eased * target) + (k === 1 ? suffix : '');
           if (k < 1) requestAnimationFrame(step);
-        })();
+        });
         io.unobserve(el);
       });
     }, { threshold: .5 });
