@@ -12,7 +12,6 @@ index.html                        the entire site (single page)
 404.html                          custom not-found page
 assets/styles.css                 all styling
 assets/main.js                    animations, project data, interactions
-Doron-Linton-Prince-Resume.pdf    downloadable résumé
 CNAME                             custom domain binding — do not edit or delete
 .nojekyll                         serve files as-is, skip Jekyll processing
 ```
@@ -30,8 +29,9 @@ GitHub Pages redeploys in about a minute.
 **To change colours:** edit the CSS custom properties in the `:root` block at
 the top of `assets/styles.css`.
 
-**To update the résumé:** replace `Doron-Linton-Prince-Resume.pdf`, keeping the
-same filename.
+**The résumé is deliberately not hosted here.** Anything served from this repo
+is publicly downloadable by anyone, so the site links to a "Request résumé"
+mailto instead. Don't commit the PDF back in unless you want it public.
 
 ## Local preview
 
