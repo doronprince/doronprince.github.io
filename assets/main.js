@@ -487,4 +487,21 @@
       t = setTimeout(function () { fn.apply(c, a); }, ms);
     };
   }
+
+  /* ── Certificate viewer ── */
+  (function () {
+    var viewer = document.getElementById('certViewer');
+    if (!viewer || typeof viewer.showModal !== 'function') return;
+    var img = viewer.querySelector('img');
+    document.querySelectorAll('[data-cert]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var thumb = btn.querySelector('img');
+        img.src = btn.getAttribute('data-cert');
+        img.alt = thumb ? thumb.alt : '';
+        viewer.showModal();
+      });
+    });
+    viewer.querySelector('.cert-viewer__close').addEventListener('click', function () { viewer.close(); });
+    viewer.addEventListener('click', function (e) { if (e.target === viewer) viewer.close(); });
+  })();
 })();
