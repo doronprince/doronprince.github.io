@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════════
-   Doron Linton Prince — portfolio interactions
+   Doron Linton Prince — portfolio
    Vanilla JS, no dependencies.
    ══════════════════════════════════════════════════════════ */
 (function () {
@@ -10,25 +10,48 @@
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
   /* ═══════════ PROJECT DATA ═══════════
-     Baked in at build time rather than fetched from the GitHub API —
-     unauthenticated browser requests are rate-limited per visitor IP. */
+     Edit this list to add or change projects.
+     tags: ai, cv, robotics, fullstack, creative. url: null for private repos. */
   var PROJECTS = [
     {
       title: "KSP God's Eye",
       sub: 'Agentic RAG crime analytics',
-      badge: 'Datathon 2026',
+      badge: 'KSP Datathon 2026',
       tags: ['ai', 'fullstack'],
-      desc: 'An intelligence-fusion centre that turns plain-English questions into complex SQL over FIR records and surveillance data. Built for the Karnataka State Police Datathon 2026.',
+      desc: 'Turns plain-English questions into SQL over FIR records and surveillance data, so analysts can query a police database without writing code. Next.js front end, FastAPI back end, read-only query execution.',
       stack: ['Next.js', 'TypeScript', 'FastAPI', 'Agentic RAG', 'xAI Grok'],
       url: 'https://github.com/doronprince/KSP-DATATHON_MEIKA_GOD-S-EYE'
     },
     {
-      title: 'Aegis',
-      sub: 'Fully-local AI operating assistant',
-      badge: 'Private',
-      priv: true,
+      title: 'Bipedal Walker RL',
+      sub: 'Imitation-bootstrapped Soft Actor-Critic',
       tags: ['ai'],
-      desc: 'A desktop assistant that runs entirely on-device with no cloud inference — a Rust daemon handling model execution and system access, driven by a Flutter interface.',
+      desc: 'Compares a SAC agent bootstrapped by behaviour cloning from a pretrained PPO expert against SAC trained from scratch on BipedalWalker-v3, with the same network architecture.',
+      stack: ['Python', 'PyTorch', 'Stable-Baselines3', 'Gymnasium'],
+      url: 'https://github.com/doronprince/reinforcement-learning-bipedal'
+    },
+    {
+      title: 'Object Tracking Drone',
+      sub: 'Computer vision for rescue operations',
+      tags: ['cv', 'robotics'],
+      desc: 'Drone-based CCTV for real-time identification and tracking across simulated disaster sites, with its own video capture, inference and model-training pipeline.',
+      stack: ['Python', 'OpenCV', 'C++', 'Deep learning'],
+      url: 'https://github.com/doronprince/Drone_CCTV_criminal-identification-and-tracking'
+    },
+    {
+      title: 'Security Robot Vision',
+      sub: 'ROS2 perception node',
+      tags: ['cv', 'robotics'],
+      desc: 'A ROS2 vision node for an autonomous security robot: YOLOv8 object detection with a fire-detection alert path wired into the robot control graph.',
+      stack: ['ROS2', 'YOLOv8', 'Python', 'OpenCV'],
+      url: 'https://github.com/doronprince/ROBOT_PROGRAMING'
+    },
+    {
+      title: 'Aegis',
+      sub: 'Fully local AI assistant',
+      badge: 'Private',
+      tags: ['ai'],
+      desc: 'A desktop assistant that runs entirely on-device with no cloud inference: a Rust daemon handles model execution and system access, driven by a Flutter interface.',
       stack: ['Rust', 'Flutter', 'Local LLMs'],
       url: null
     },
@@ -36,7 +59,7 @@
       title: 'NexusOps',
       sub: 'AI workforce management platform',
       tags: ['ai', 'fullstack'],
-      desc: 'An agentic AI backend that lets non-technical users build, train and deploy custom agents to automate business operations. Modular, service-oriented architecture.',
+      desc: 'An agentic AI back end that lets non-technical users build, train and deploy agents to automate business operations.',
       stack: ['Python', 'FastAPI', 'TensorFlow', 'Flask', 'JavaScript'],
       url: 'https://github.com/doronprince/Nexus-OPS'
     },
@@ -45,47 +68,23 @@
       sub: 'Explainable AI finance assistant',
       badge: 'In progress',
       tags: ['ai', 'fullstack'],
-      desc: 'A personal-finance MVP for students that does more than categorise spending — it explains its risk flags and budget advice. FastAPI service with a Flutter client.',
+      desc: 'A personal-finance app for students that explains its risk flags and budget advice instead of only categorising spending. FastAPI service with a Flutter client.',
       stack: ['Python', 'FastAPI', 'SQLAlchemy', 'Flutter', 'Alembic'],
       url: 'https://github.com/doronprince/Meika_mvp'
-    },
-    {
-      title: 'Object Tracking Drone',
-      sub: 'Computer vision for rescue operations',
-      tags: ['cv', 'robotics'],
-      desc: 'Drone-based CCTV for real-time identification and tracking across simulated disaster sites, with a full model-training pipeline and integration into the flight controller.',
-      stack: ['Python', 'OpenCV', 'C++', 'Deep learning'],
-      url: 'https://github.com/doronprince/Drone_CCTV_criminal-identification-and-tracking'
     },
     {
       title: 'Scan Center System',
       sub: 'Offline-first diagnostic management',
       tags: ['ai', 'fullstack'],
-      desc: 'An AI-assisted management system for diagnostic scan centres, designed to keep working when the network does not — offline-first data capture with later synchronisation.',
-      stack: ['Python', 'Offline-first', 'SQLite'],
+      desc: 'An AI-assisted management system for diagnostic scan centres that keeps working without a network and synchronises later.',
+      stack: ['Python', 'SQLite'],
       url: 'https://github.com/doronprince/scan-center-system'
     },
     {
-      title: 'Security Robot Vision',
-      sub: 'ROS2 perception node',
-      tags: ['cv', 'robotics'],
-      desc: 'A ROS2 vision node for an autonomous security robot: YOLOv8 object detection with a fire-detection alerting path wired into the robot control graph.',
-      stack: ['ROS2', 'YOLOv8', 'Python', 'OpenCV'],
-      url: 'https://github.com/doronprince/ROBOT_PROGRAMING'
-    },
-    {
-      title: 'Bipedal Walker RL',
-      sub: 'Imitation-bootstrapped SAC',
-      tags: ['ai'],
-      desc: 'A controlled study comparing Soft Actor-Critic bootstrapped from demonstrations against SAC trained from scratch on the BipedalWalker environment.',
-      stack: ['Python', 'PyTorch', 'SAC', 'Gymnasium'],
-      url: 'https://github.com/doronprince/reinforcement-learning-bipedal'
-    },
-    {
       title: 'AR Music',
-      sub: 'Gesture-controlled music generator',
+      sub: 'Gesture-controlled music',
       tags: ['cv', 'creative'],
-      desc: 'Hand-tracking via MediaPipe mapped to a real-time synthesis engine — play and shape music in the air with no controller.',
+      desc: 'MediaPipe hand tracking mapped to a real-time synthesis engine, so you play and shape sound in the air.',
       stack: ['Python', 'MediaPipe', 'OpenCV', 'Audio synthesis'],
       url: 'https://github.com/doronprince/ar-music'
     },
@@ -93,7 +92,7 @@
       title: 'Nexus IoT Event Platform',
       sub: 'The Hunt for the Lost Algorithm',
       tags: ['fullstack', 'robotics'],
-      desc: 'A gamified event website for an IoT and AI competition — puzzle progression, team scoring and live state backed by Firebase.',
+      desc: 'A gamified website for an IoT and AI competition, with puzzle progression, team scoring and live state backed by Firebase.',
       stack: ['React', 'Firebase', 'JavaScript'],
       url: 'https://github.com/doronprince/nexus-iot-event-website'
     },
@@ -101,7 +100,7 @@
       title: 'Neon Heart',
       sub: 'WebGL fragment shader',
       tags: ['creative'],
-      desc: 'An animated neon heart rendered entirely in a GLSL fragment shader — signed distance fields, bloom and time-driven distortion, no textures.',
+      desc: 'An animated neon heart drawn entirely in a GLSL fragment shader with signed distance fields and time-driven distortion.',
       stack: ['WebGL', 'GLSL', 'JavaScript'],
       url: 'https://github.com/doronprince/neon-heart'
     },
@@ -109,382 +108,288 @@
       title: 'AiDiagnose',
       sub: 'Symptom-based medical chatbot',
       tags: ['ai'],
-      desc: 'An NLP pipeline that interprets free-text symptom descriptions and surfaces likely conditions, trained on structured medical record data.',
-      stack: ['Python', 'Scikit-learn', 'NLTK', 'Pandas'],
+      desc: 'An NLP pipeline that reads free-text symptom descriptions and suggests likely conditions, trained on structured medical record data.',
+      stack: ['Python', 'scikit-learn', 'NLTK', 'Pandas'],
       url: null
     }
   ];
 
-  /* ═══════════ PRELOADER ═══════════ */
-  (function preloader() {
-    var el = $('#preloader'), bar = $('#preBar'), pct = $('#prePct');
-    if (!el) return;
-    var p = 0;
-    var tick = setInterval(function () {
-      p += Math.random() * 18 + 6;
-      if (p >= 100) { p = 100; clearInterval(tick); setTimeout(done, 260); }
-      if (bar) bar.style.width = p + '%';
-      if (pct) pct.textContent = Math.floor(p);
-    }, reduced ? 30 : 110);
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
 
-    function done() {
-      el.classList.add('is-done');
-      document.body.classList.remove('is-locked');
-      setTimeout(function () { el.remove(); }, 800);
-    }
-    document.body.classList.add('is-locked');
-    // Hard safety net — never trap the visitor behind the loader.
-    setTimeout(function () { clearInterval(tick); done(); }, 3500);
-  })();
-
-  /* ═══════════ BACKGROUND: PARTICLE CONSTELLATION ═══════════ */
-  (function background() {
-    var cv = $('#bgCanvas');
-    if (!cv || reduced) { if (cv) cv.style.display = 'none'; return; }
-
-    var ctx = cv.getContext('2d', { alpha: true });
-    if (!ctx) { cv.style.display = 'none'; return; }
+  /* ═══════════ HERO: VALUE LANDSCAPE ═══════════
+     A scalar field V(x, y, t) = slow waves + a few drifting reward peaks
+     + a peak under the pointer. Contours are drawn with marching squares.
+     An agent does gradient ascent on V and leaves a fading trail. */
+  (function field() {
+    var cv = $('#field');
+    if (!cv) return;
+    var ctx = cv.getContext('2d');
+    if (!ctx) return;
 
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var W = 0, H = 0, pts = [], raf = null, running = true;
-    var mouse = { x: -9999, y: -9999 };
+    var W = 0, H = 0, cell = 12, cols = 0, rows = 0, grid = null;
+    var t = Math.random() * 100;
+    var visible = true, raf = null, last = 0;
+    var pointer = { x: -1e4, y: -1e4, k: 0 };      // k eases the cursor peak in and out
+
+    var peaks = [
+      { ax: .72, ay: .32, r: .19, a: 1.0, sx: .11, sy: .07 },
+      { ax: .28, ay: .62, r: .16, a: .8,  sx: .08, sy: .13 },
+      { ax: .55, ay: .78, r: .22, a: .6,  sx: .05, sy: .09 }
+    ];
+
+    var LEVELS = [];
+    for (var L = -0.6; L <= 1.75; L += 0.17) LEVELS.push(L);
+
+    var agent = { x: 0, y: 0, trail: [], age: 0 };
 
     function size() {
       W = cv.clientWidth; H = cv.clientHeight;
-      cv.width = Math.floor(W * dpr);
-      cv.height = Math.floor(H * dpr);
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      seed();
+      cell = W < 700 ? 16 : 12;
+      cols = Math.ceil(W / cell) + 1;
+      rows = Math.ceil(H / cell) + 1;
+      grid = new Float32Array(cols * rows);
+      spawn();
     }
 
-    function seed() {
-      // Density scales with viewport, hard-capped so phones stay smooth.
-      var n = Math.min(Math.round((W * H) / 15000), 110);
-      pts = [];
-      for (var i = 0; i < n; i++) {
-        pts.push({
-          x: Math.random() * W,
-          y: Math.random() * H,
-          vx: (Math.random() - .5) * .28,
-          vy: (Math.random() - .5) * .28,
-          r: Math.random() * 1.5 + .5
-        });
+    function V(x, y) {
+      var u = x / W, v = y / H, s = Math.max(W, H);
+      var val = .32 * Math.sin(u * 5.1 + t * .23) * Math.cos(v * 4.3 - t * .17)
+              + .22 * Math.sin((u + v) * 3.7 + t * .31);
+      for (var i = 0; i < peaks.length; i++) {
+        var p = peaks[i];
+        var px = (p.ax + .12 * Math.sin(t * p.sx * 2.1 + i)) * W;
+        var py = (p.ay + .10 * Math.cos(t * p.sy * 2.3 + i * 2)) * H;
+        var dx = (x - px) / (p.r * s), dy = (y - py) / (p.r * s);
+        val += p.a * Math.exp(-(dx * dx + dy * dy));
+      }
+      if (pointer.k > .001) {
+        var qx = (x - pointer.x) / 150, qy = (y - pointer.y) / 150;
+        val += 1.15 * pointer.k * Math.exp(-(qx * qx + qy * qy));
+      }
+      return val;
+    }
+
+    function spawn() {
+      agent.x = W * (.45 + Math.random() * .45);
+      agent.y = H * (.15 + Math.random() * .7);
+      agent.trail = [];
+      agent.age = 0;
+    }
+
+    function sample() {
+      for (var j = 0; j < rows; j++) {
+        for (var i = 0; i < cols; i++) grid[j * cols + i] = V(i * cell, j * cell);
       }
     }
 
-    function frame() {
-      if (!running) return;
-      ctx.clearRect(0, 0, W, H);
+    function lerp(a, b, lv) { return (lv - a) / (b - a || 1e-6); }
 
-      for (var i = 0; i < pts.length; i++) {
-        var p = pts[i];
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0 || p.x > W) p.vx *= -1;
-        if (p.y < 0 || p.y > H) p.vy *= -1;
-
-        // gentle attraction toward the pointer
-        var dx = mouse.x - p.x, dy = mouse.y - p.y;
-        var md = Math.sqrt(dx * dx + dy * dy);
-        if (md < 190 && md > 0) {
-          p.x += (dx / md) * .32;
-          p.y += (dy / md) * .32;
-        }
-
+    function contours() {
+      var n = LEVELS.length;
+      for (var li = 0; li < n; li++) {
+        var lv = LEVELS[li];
+        var hi = li >= n - 2;
+        var k = li / (n - 1);
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0,229,255,.42)';
-        ctx.fill();
-      }
-
-      // link nearby nodes
-      for (var a = 0; a < pts.length; a++) {
-        for (var b = a + 1; b < pts.length; b++) {
-          var ux = pts[a].x - pts[b].x, uy = pts[a].y - pts[b].y;
-          var d2 = ux * ux + uy * uy;
-          if (d2 < 16900) {
-            var o = (1 - Math.sqrt(d2) / 130) * .22;
-            ctx.beginPath();
-            ctx.moveTo(pts[a].x, pts[a].y);
-            ctx.lineTo(pts[b].x, pts[b].y);
-            ctx.strokeStyle = 'rgba(139,92,246,' + o + ')';
-            ctx.lineWidth = .6;
-            ctx.stroke();
+        for (var j = 0; j < rows - 1; j++) {
+          for (var i = 0; i < cols - 1; i++) {
+            var a = grid[j * cols + i],       b = grid[j * cols + i + 1];
+            var c = grid[(j + 1) * cols + i + 1], d = grid[(j + 1) * cols + i];
+            var idx = (a > lv ? 8 : 0) | (b > lv ? 4 : 0) | (c > lv ? 2 : 0) | (d > lv ? 1 : 0);
+            if (idx === 0 || idx === 15) continue;
+            var x = i * cell, y = j * cell;
+            var top = [x + cell * lerp(a, b, lv), y];
+            var rgt = [x + cell, y + cell * lerp(b, c, lv)];
+            var bot = [x + cell * lerp(d, c, lv), y + cell];
+            var lft = [x, y + cell * lerp(a, d, lv)];
+            var segs;
+            switch (idx) {
+              case 1: case 14: segs = [lft, bot]; break;
+              case 2: case 13: segs = [bot, rgt]; break;
+              case 3: case 12: segs = [lft, rgt]; break;
+              case 4: case 11: segs = [top, rgt]; break;
+              case 6: case 9:  segs = [top, bot]; break;
+              case 7: case 8:  segs = [lft, top]; break;
+              case 5:  segs = [lft, top, bot, rgt]; break;
+              case 10: segs = [lft, bot, top, rgt]; break;
+            }
+            for (var s = 0; s < segs.length; s += 2) {
+              ctx.moveTo(segs[s][0], segs[s][1]);
+              ctx.lineTo(segs[s + 1][0], segs[s + 1][1]);
+            }
           }
         }
+        ctx.lineWidth = hi ? 1.25 : 1;
+        ctx.strokeStyle = hi
+          ? 'rgba(240,177,74,' + (.55 + .25 * (li - n + 2)) + ')'
+          : 'rgba(127,147,188,' + (.1 + .32 * k) + ')';
+        ctx.stroke();
       }
-      raf = requestAnimationFrame(frame);
     }
 
-    function start() { if (!running) { running = true; frame(); } }
-    function stop()  { running = false; if (raf) cancelAnimationFrame(raf); }
+    function stepAgent() {
+      var h = 3;
+      var gx = (V(agent.x + h, agent.y) - V(agent.x - h, agent.y)) / (2 * h);
+      var gy = (V(agent.x, agent.y + h) - V(agent.x, agent.y - h)) / (2 * h);
+      var g = Math.sqrt(gx * gx + gy * gy);
+      var speed = 1.6;
+      if (g > 1e-6) { agent.x += gx / g * speed; agent.y += gy / g * speed; }
+      // a little exploration noise, like an epsilon-greedy policy
+      agent.x += (Math.random() - .5) * .9;
+      agent.y += (Math.random() - .5) * .9;
+      agent.trail.push(agent.x, agent.y);
+      if (agent.trail.length > 360) agent.trail.splice(0, 2);
+      agent.age++;
+      var off = agent.x < -20 || agent.y < -20 || agent.x > W + 20 || agent.y > H + 20;
+      if (agent.age > 1100 || off || (g < 0.00045 && agent.age > 240)) spawn();
+    }
 
-    window.addEventListener('resize', debounce(size, 180));
-    window.addEventListener('pointermove', function (e) { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
-    window.addEventListener('pointerleave', function () { mouse.x = mouse.y = -9999; });
-    // Don't burn battery in a background tab.
-    document.addEventListener('visibilitychange', function () {
-      document.hidden ? stop() : start();
-    });
+    function drawAgent() {
+      var tr = agent.trail, n = tr.length / 2;
+      if (n < 2) return;
+      for (var i = 1; i < n; i++) {
+        ctx.beginPath();
+        ctx.moveTo(tr[(i - 1) * 2], tr[(i - 1) * 2 + 1]);
+        ctx.lineTo(tr[i * 2], tr[i * 2 + 1]);
+        ctx.strokeStyle = 'rgba(240,177,74,' + (i / n) * .85 + ')';
+        ctx.lineWidth = 1.6;
+        ctx.stroke();
+      }
+      ctx.beginPath();
+      ctx.arc(agent.x, agent.y, 3.6, 0, Math.PI * 2);
+      ctx.fillStyle = '#f0b14a';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(agent.x, agent.y, 9, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(240,177,74,.35)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, W, H);
+      sample();
+      contours();
+      drawAgent();
+    }
+
+    function frame(ts) {
+      raf = requestAnimationFrame(frame);
+      if (!visible || document.hidden) return;
+      if (ts - last < 33) return;            // ~30 fps is plenty for slow drift
+      last = ts;
+      t += .016;
+      var target = pointer.x > -1e3 ? 1 : 0;
+      pointer.k += (target - pointer.k) * .06;
+      for (var s = 0; s < 2; s++) stepAgent();
+      render();
+    }
+
+    window.addEventListener('resize', debounce(function () { size(); if (reduced) render(); }, 150));
+    cv.parentElement.addEventListener('pointermove', function (e) {
+      var r = cv.getBoundingClientRect();
+      pointer.x = e.clientX - r.left; pointer.y = e.clientY - r.top;
+    }, { passive: true });
+    cv.parentElement.addEventListener('pointerleave', function () { pointer.x = pointer.y = -1e4; });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }).observe(cv);
+    }
 
     size();
-    frame();
-  })();
-
-  /* ═══════════ CUSTOM CURSOR + MAGNETIC ═══════════ */
-  (function cursor() {
-    var dot = $('#cursorDot'), ring = $('#cursorRing');
-    if (!dot || !ring || window.matchMedia('(hover:none)').matches) return;
-
-    var mx = 0, my = 0, rx = 0, ry = 0;
-
-    window.addEventListener('pointermove', function (e) {
-      mx = e.clientX; my = e.clientY;
-      dot.style.transform = 'translate(' + mx + 'px,' + my + 'px) translate(-50%,-50%)';
-    }, { passive: true });
-
-    (function loop() {
-      rx += (mx - rx) * .16;
-      ry += (my - ry) * .16;
-      ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
-      requestAnimationFrame(loop);
-    })();
-
-    $$('a, button, .pills span, .card').forEach(function (el) {
-      el.addEventListener('pointerenter', function () { ring.classList.add('is-hot'); });
-      el.addEventListener('pointerleave', function () { ring.classList.remove('is-hot'); });
-    });
-
-    if (reduced) return;
-    $$('[data-magnetic]').forEach(function (el) {
-      el.addEventListener('pointermove', function (e) {
-        var r = el.getBoundingClientRect();
-        var x = e.clientX - r.left - r.width / 2;
-        var y = e.clientY - r.top - r.height / 2;
-        el.style.transform = 'translate(' + x * .22 + 'px,' + y * .3 + 'px)';
-      });
-      el.addEventListener('pointerleave', function () { el.style.transform = ''; });
-    });
+    if (reduced) {
+      // a single still frame: the landscape and a finished climb
+      for (var i = 0; i < 260; i++) stepAgent();
+      render();
+    } else {
+      raf = requestAnimationFrame(frame);
+    }
   })();
 
   /* ═══════════ NAV ═══════════ */
   (function nav() {
-    var bar = $('#nav'), burger = $('#burger'), links = $('#navLinks');
+    var bar = $('#nav');
+    function onScroll() { if (bar) bar.classList.toggle('is-stuck', window.scrollY > 40); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 
-    window.addEventListener('scroll', function () {
-      if (bar) bar.classList.toggle('is-stuck', window.scrollY > 40);
-    }, { passive: true });
-
-    if (burger && links) {
-      burger.addEventListener('click', function () {
-        var open = links.classList.toggle('is-open');
-        burger.classList.toggle('is-open', open);
-        burger.setAttribute('aria-expanded', String(open));
-        document.body.classList.toggle('is-locked', open);
-      });
-      $$('a', links).forEach(function (a) {
-        a.addEventListener('click', function () {
-          links.classList.remove('is-open');
-          burger.classList.remove('is-open');
-          burger.setAttribute('aria-expanded', 'false');
-          document.body.classList.remove('is-locked');
-        });
-      });
-    }
-
-    // active-section highlighting
-    var navLinks = $$('[data-nav]');
-    var sections = navLinks.map(function (a) { return $(a.getAttribute('href')); }).filter(Boolean);
-    if ('IntersectionObserver' in window && sections.length) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (!en.isIntersecting) return;
-          navLinks.forEach(function (a) {
-            a.classList.toggle('is-active', a.getAttribute('href') === '#' + en.target.id);
-          });
-        });
-      }, { rootMargin: '-45% 0px -50% 0px' });
-      sections.forEach(function (s) { io.observe(s); });
-    }
-  })();
-
-  /* ═══════════ SCROLL PROGRESS ═══════════ */
-  (function progress() {
-    var bar = $('#scrollBar');
-    if (!bar) return;
-    window.addEventListener('scroll', function () {
-      var h = document.documentElement.scrollHeight - window.innerHeight;
-      bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
-    }, { passive: true });
-  })();
-
-  /* ═══════════ REVEAL ON SCROLL ═══════════ */
-  var revealIO = null;
-  if ('IntersectionObserver' in window) {
-    revealIO = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en, i) {
-        if (!en.isIntersecting) return;
-        var el = en.target;
-        setTimeout(function () { el.classList.add('is-in'); }, reduced ? 0 : i * 70);
-        revealIO.unobserve(el);
-      });
-    }, { threshold: .12, rootMargin: '0px 0px -60px 0px' });
-    $$('.reveal').forEach(function (el) { revealIO.observe(el); });
-  } else {
-    $$('.reveal').forEach(function (el) { el.classList.add('is-in'); });
-  }
-
-  /* ═══════════ COUNTERS ═══════════ */
-  (function counters() {
-    var nodes = $$('[data-count]');
-    if (!nodes.length || !('IntersectionObserver' in window)) {
-      nodes.forEach(function (n) { n.textContent = n.dataset.count + (n.dataset.suffix || ''); });
-      return;
-    }
+    var links = $$('.nav__links a');
+    var targets = links.map(function (a) { return $(a.getAttribute('href')); }).filter(Boolean);
+    if (!('IntersectionObserver' in window) || !targets.length) return;
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
-        var el = en.target;
-        var target = parseInt(el.dataset.count, 10);
-        var suffix = el.dataset.suffix || '';
-        if (reduced) { el.textContent = target + suffix; io.unobserve(el); return; }
-        var t0 = null, dur = 1500;
-        // Must be driven by rAF from the first frame — calling step() directly
-        // leaves `ts` undefined and the whole computation collapses to NaN.
-        requestAnimationFrame(function step(ts) {
-          if (t0 === null) t0 = ts;
-          var k = Math.min((ts - t0) / dur, 1);
-          var eased = 1 - Math.pow(1 - k, 3);
-          el.textContent = Math.floor(eased * target) + (k === 1 ? suffix : '');
-          if (k < 1) requestAnimationFrame(step);
+        links.forEach(function (a) {
+          a.classList.toggle('is-active', a.getAttribute('href') === '#' + en.target.id);
         });
-        io.unobserve(el);
       });
-    }, { threshold: .5 });
-    nodes.forEach(function (n) { io.observe(n); });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    targets.forEach(function (s) { io.observe(s); });
   })();
 
-  /* ═══════════ SKILL METERS ═══════════ */
-  (function meters() {
-    var nodes = $$('.meter');
-    if (!nodes.length) return;
-    if (!('IntersectionObserver' in window)) {
-      nodes.forEach(function (m) { m.style.setProperty('--lvl', m.dataset.level + '%'); });
-      return;
-    }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        var m = en.target;
-        setTimeout(function () {
-          m.style.setProperty('--lvl', m.dataset.level + '%');
-        }, reduced ? 0 : 120);
-        io.unobserve(m);
-      });
-    }, { threshold: .4 });
-    nodes.forEach(function (m) { io.observe(m); });
-  })();
-
-  /* ═══════════ ROLE ROTATOR ═══════════ */
-  (function rotator() {
-    var box = $('#rotator');
-    if (!box) return;
-    var items = $$('span', box);
-    if (items.length < 2) return;
-    var i = 0;
-    setInterval(function () {
-      i = (i + 1) % items.length;
-      items.forEach(function (s) { s.style.transform = 'translateY(-' + (i * 100) + '%)'; });
-    }, 2600);
-  })();
-
-  /* ═══════════ HERO TITLE DECRYPT ═══════════ */
-  (function decrypt() {
-    if (reduced) return;
-    var CH = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#%&$@*';
-    $$('.decrypt').forEach(function (el, idx) {
-      var final = el.dataset.text || el.textContent;
-      var frame = 0;
-      setTimeout(function () {
-        var id = setInterval(function () {
-          el.textContent = final.split('').map(function (c, i) {
-            if (i < frame / 3) return final[i];
-            return CH[Math.floor(Math.random() * CH.length)];
-          }).join('');
-          frame++;
-          if (frame / 3 >= final.length) { clearInterval(id); el.textContent = final; }
-        }, 38);
-      }, 420 + idx * 130);
-    });
-  })();
-
-  /* ═══════════ PROJECT GRID ═══════════ */
+  /* ═══════════ PROJECTS: expandable rows + filters ═══════════ */
   (function projects() {
-    var grid = $('#projectGrid');
-    if (!grid) return;
+    var list = $('#projects');
+    if (!list) return;
 
-    var html = PROJECTS.map(function (p, i) {
-      var n = String(i + 1).padStart(2, '0');
-      var badge = p.badge
-        ? '<span class="card__badge' + (p.priv ? ' card__badge--private' : '') + '">' + p.badge + '</span>'
-        : '';
-      var stack = p.stack.map(function (s) { return '<span>' + s + '</span>'; }).join('');
-      var foot = p.url
-        ? '<a class="card__link" href="' + p.url + '" target="_blank" rel="noopener">View source <span class="btn__arrow">→</span></a>'
-        : '<span class="card__lock">Private repository</span>';
-
+    list.innerHTML = PROJECTS.map(function (p, i) {
+      var id = 'proj-' + i;
+      var link = p.url
+        ? '<a href="' + esc(p.url) + '" target="_blank" rel="noopener">Source on GitHub</a>'
+        : '<span>Private repository</span>';
+      var badge = p.badge ? '<span class="badge">' + esc(p.badge) + '</span>' : '';
       return '' +
-        '<article class="card" data-tags="' + p.tags.join(' ') + '" style="animation-delay:' + (i % 6) * 60 + 'ms">' +
-          '<div class="card__top"><span class="card__idx">' + n + '</span>' + badge + '</div>' +
-          '<h3 class="card__title">' + p.title + '</h3>' +
-          '<p class="card__sub">' + p.sub + '</p>' +
-          '<p class="card__desc">' + p.desc + '</p>' +
-          '<div class="card__stack">' + stack + '</div>' +
-          '<div class="card__foot">' + foot + '</div>' +
-        '</article>';
+        '<li class="project" data-tags="' + p.tags.join(' ') + '">' +
+          '<button class="project__btn" aria-expanded="false" aria-controls="' + id + '">' +
+            '<span class="project__title">' + esc(p.title) + '</span>' +
+            '<span class="project__sub">' + esc(p.sub) + '</span>' +
+            '<span class="project__mark" aria-hidden="true"></span>' +
+          '</button>' +
+          '<div class="project__more" id="' + id + '"><div>' +
+            '<p class="project__desc">' + esc(p.desc) + '</p>' +
+            '<p class="project__meta">' + badge + '<span>' + p.stack.map(esc).join(', ') + '</span>' + link + '</p>' +
+          '</div></div>' +
+        '</li>';
     }).join('');
 
-    grid.innerHTML = html;
-
-    // pointer-tracked glow
-    $$('.card', grid).forEach(function (card) {
-      card.addEventListener('pointermove', function (e) {
-        var r = card.getBoundingClientRect();
-        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    $$('.project', list).forEach(function (row, i) {
+      var btn = $('.project__btn', row);
+      var panel = $('.project__more', row);
+      panel.inert = true;
+      btn.addEventListener('click', function () {
+        var open = !row.classList.contains('is-open');
+        row.classList.toggle('is-open', open);
+        btn.setAttribute('aria-expanded', String(open));
+        panel.inert = !open;
       });
+      if (i === 0) btn.click();     // show one example of what a row holds
     });
 
-    // filtering
-    var chips = $$('.chip');
-    chips.forEach(function (chip) {
-      chip.addEventListener('click', function () {
-        chips.forEach(function (c) { c.classList.remove('is-active'); });
-        chip.classList.add('is-active');
-        var f = chip.dataset.filter;
-        $$('.card', grid).forEach(function (card, i) {
-          var show = f === 'all' || card.dataset.tags.split(' ').indexOf(f) > -1;
-          card.classList.toggle('is-hidden', !show);
-          if (show) {
-            card.style.animation = 'none';
-            void card.offsetWidth;           // force reflow to restart the entry animation
-            card.style.animation = '';
-            card.style.animationDelay = (i % 6) * 50 + 'ms';
-          }
+    var filters = $$('.filter');
+    filters.forEach(function (f) {
+      f.addEventListener('click', function () {
+        filters.forEach(function (o) { o.classList.remove('is-active'); o.setAttribute('aria-pressed', 'false'); });
+        f.classList.add('is-active'); f.setAttribute('aria-pressed', 'true');
+        var tag = f.dataset.filter;
+        $$('.project', list).forEach(function (row) {
+          row.hidden = !(tag === 'all' || row.dataset.tags.split(' ').indexOf(tag) > -1);
         });
       });
     });
   })();
 
-  /* ═══════════ MISC ═══════════ */
   var yr = $('#year');
   if (yr) yr.textContent = new Date().getFullYear();
 
   function debounce(fn, ms) {
-    var t;
-    return function () {
-      var a = arguments, c = this;
-      clearTimeout(t);
-      t = setTimeout(function () { fn.apply(c, a); }, ms);
-    };
+    var tm;
+    return function () { clearTimeout(tm); tm = setTimeout(fn, ms); };
   }
 })();

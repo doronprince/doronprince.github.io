@@ -3,48 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>404 — Doron Linton Prince</title>
+<title>Page not found — Doron Linton Prince</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2305060b'/><text y='72' x='50' text-anchor='middle' font-size='62' font-family='monospace' font-weight='bold' fill='%2300e5ff'>D</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&display=swap">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%23151b2c'/><path d='M18 70 Q38 30 50 52 T82 34' fill='none' stroke='%237f93bc' stroke-width='5'/><circle cx='82' cy='34' r='8' fill='%23f0b14a'/></svg>">
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
+  *{box-sizing:border-box;margin:0}
   body{
-    min-height:100svh; display:grid; place-items:center; text-align:center;
-    background:#05060b; color:#e8ecf4; padding:2rem;
-    font-family:'Space Grotesk',system-ui,sans-serif;
-    background-image:radial-gradient(circle at 50% 0%,rgba(0,229,255,.13),transparent 58%);
+    min-height:100svh; display:grid; place-items:center; padding:2rem;
+    background:#151b2c; color:#e4e8f1;
+    font-family:'Bricolage Grotesque',system-ui,sans-serif; line-height:1.6;
   }
+  main{ max-width:34rem; }
+  svg{ width:100%; max-width:22rem; height:auto; margin-bottom:2rem; }
   h1{
-    font-size:clamp(5rem,22vw,13rem); font-weight:700; line-height:.9;
-    letter-spacing:-.05em;
-    background:linear-gradient(140deg,#00e5ff,#8b5cf6);
-    -webkit-background-clip:text; background-clip:text; color:transparent;
+    font-size:clamp(2.2rem,7vw,3.6rem); line-height:1; letter-spacing:-.03em;
+    font-variation-settings:'opsz' 96,'wdth' 80;
   }
-  p.k{
-    font-family:'JetBrains Mono',monospace; font-size:.76rem;
-    letter-spacing:.28em; text-transform:uppercase; color:#5d6478;
-    margin:1.2rem 0 .8rem;
-  }
-  p.m{ color:#98a1b5; max-width:44ch; margin:0 auto 2.2rem; }
+  p{ color:#949eb6; margin:1rem 0 2rem; }
   a{
-    display:inline-flex; align-items:center; gap:.55rem;
-    padding:.85rem 1.7rem; border-radius:100px;
-    color:#04050a; text-decoration:none; font-weight:500; font-size:.9rem;
-    background:linear-gradient(120deg,#00e5ff,#8b5cf6);
-    box-shadow:0 8px 34px rgba(0,229,255,.28);
-    transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s;
+    display:inline-block; padding:.72rem 1.25rem; border-radius:999px;
+    background:#e4e8f1; color:#10152a; text-decoration:none; font-weight:500;
   }
-  a:hover{ transform:translateY(-2px); box-shadow:0 12px 46px rgba(0,229,255,.44); }
+  a:hover{ background:#f0b14a; }
+  a:focus-visible{ outline:2px solid #f0b14a; outline-offset:3px; }
 </style>
 </head>
 <body>
-  <div>
-    <h1>404</h1>
-    <p class="k">Signal lost</p>
-    <p class="m">This page doesn't exist — or it moved somewhere I haven't documented yet.</p>
-    <a href="/">← Back to the portfolio</a>
-  </div>
+  <main>
+    <svg viewBox="0 0 220 90" aria-hidden="true">
+      <path d="M5 70 C40 70 50 20 90 25 S150 75 215 40" fill="none" stroke="#7f93bc" stroke-width="1.5" stroke-dasharray="3 5"/>
+      <path d="M5 70 C30 70 45 45 70 34" fill="none" stroke="#f0b14a" stroke-width="2"/>
+      <circle cx="70" cy="34" r="4" fill="#f0b14a"/>
+    </svg>
+    <h1>This page isn’t on the map.</h1>
+    <p>The address may be mistyped, or the page has moved. Everything on this site is on the home page.</p>
+    <a href="/">Go to the home page</a>
+  </main>
 </body>
 </html>
