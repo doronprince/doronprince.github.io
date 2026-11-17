@@ -26,17 +26,8 @@ GitHub Pages redeploys in about a minute.
 `tags` array (`ai`, `cv`, `robotics`, `fullstack`, `creative`), an optional
 `badge`, and a `url` (use `null` for private repositories).
 
-**The hero background** is a live contour map of a value function, drawn with
-marching squares on a `<canvas>`. Moving the cursor adds a reward peak, and an
-amber agent climbs the gradient. It pauses when the hero is off-screen, runs at
-about 30 fps, and shows a single still frame for visitors who prefer reduced
-motion. All of it lives in the `field()` block of `assets/main.js`.
-
 **To change colours:** edit the CSS custom properties in the `:root` block at
-the top of `assets/styles.css`. Amber (`--signal`) is reserved for the agent,
-the status dot and the registered design.
-
-**Type:** Bricolage Grotesque (Google Fonts), using its width axis for display.
+the top of `assets/styles.css`.
 
 **The résumé is deliberately not hosted here.** Anything served from this repo
 is publicly downloadable by anyone, so the site links to a "Request résumé"
