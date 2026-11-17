@@ -135,7 +135,7 @@
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
     var W = 0, H = 0, NX = 72, NZ = 46;
     var t = 0, visible = true, last = 0;
-    var mouse = { u: .62, v: .45, on: 0, tu: .62, tv: .45 };   // u,v in [0,1] across the surface
+    var mouse = { u: .62, v: .45, on: 0, onT: 0, tu: .62, tv: .45 };   // u,v in [0,1] across the surface
     var tilt = { x: 0, y: 0 };
     var P = null, Y = null;                                    // projected points, heights
 
@@ -325,6 +325,7 @@
       if (ts - last < 28) return;
       last = ts;
       t += .022;
+      mouse.on += (mouse.onT - mouse.on) * .07;   // ease the reward peak in and out
       mouse.u += (mouse.tu - mouse.u) * .08;
       mouse.v += (mouse.tv - mouse.v) * .08;
       tilt.x += ((mouse.tu - .5) - tilt.x) * .04;
@@ -338,9 +339,9 @@
       var r = cv.getBoundingClientRect();
       mouse.tu = (e.clientX - r.left) / r.width;
       mouse.tv = Math.min(1, Math.max(0, ((e.clientY - r.top) / r.height - .35) / .65));
-      mouse.on = 1;
+      mouse.onT = 1;
     }, { passive: true });
-    host.addEventListener('pointerleave', function () { mouse.on = 0; mouse.tu = .62; mouse.tv = .45; });
+    host.addEventListener('pointerleave', function () { mouse.onT = 0; mouse.tu = .62; mouse.tv = .45; });
 
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }).observe(cv);
